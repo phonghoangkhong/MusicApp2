@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -23,6 +24,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -36,12 +38,14 @@ public class AllSongFragment extends Fragment {
     List<Song> mupload;
     JcSongsAdapter adapter;
     DatabaseReference databaseReference;
-    ValueEventListener valueEventListener;
+
     JcPlayerView jcPlayerView;
     ArrayList<JcAudio> jcAudios=new ArrayList<>();
     private int currentIndex;
      ImageView back;
      String user;
+     EditText timkiem;
+     ImageView search;
     public AllSongFragment(String user) {
         // Required empty public constructor
           this.user=user;
@@ -54,11 +58,13 @@ public class AllSongFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view =inflater.inflate(R.layout.fragment_all_song, container, false);
-        progressBar=view.findViewById(R.id.processbarshowsong_allsong);
-        jcPlayerView=view.findViewById(R.id.jcplayer_allsong);
-        recyclerView=view.findViewById(R.id.recycleview_id_allsong);
-        back=view.findViewById(R.id.btn_back_allSong);
+        View view = inflater.inflate(R.layout.fragment_all_song, container, false);
+        progressBar = view.findViewById(R.id.processbarshowsong_allsong);
+        jcPlayerView = view.findViewById(R.id.jcplayer_allsong);
+        recyclerView = view.findViewById(R.id.recycleview_id_allsong);
+        back = view.findViewById(R.id.btn_back_allSong);
+        search=view.findViewById(R.id.btn_search_allsong);
+        timkiem=view.findViewById(R.id.edt_allsong);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,11 +82,11 @@ public class AllSongFragment extends Fragment {
         });
 
 
-                recyclerView.setHasFixedSize(true);
+        recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        mupload=new ArrayList<>();
+        mupload = new ArrayList<>();
         recyclerView.setAdapter(adapter);
-        adapter=new JcSongsAdapter(getContext(), mupload,user, new JcSongsAdapter.RecyclerItemClickListener() {
+        adapter = new JcSongsAdapter(getContext(), mupload, user, new JcSongsAdapter.RecyclerItemClickListener() {
             @Override
             public void onClickListener(Song uploadSong, int position) {
                 changeSelectedSong(position);
@@ -90,44 +96,58 @@ public class AllSongFragment extends Fragment {
             }
 
         });
-
-        databaseReference= FirebaseDatabase.getInstance().getReference("songs");
-        valueEventListener=databaseReference.addValueEventListener(new ValueEventListener() {
+         databaseReference= FirebaseDatabase.getInstance().getReference("songs");
+         databaseReference.addListenerForSingleValueEvent(valueEventListener);
+        search.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                mupload.clear();
-                for(DataSnapshot dss:dataSnapshot.getChildren()){
-                    Song uploadSong=dss.getValue(Song.class);
-                    uploadSong.setmKey(dss.getKey());
-                    currentIndex=0;
-
-
-                    mupload.add(uploadSong);
-                    checkin=true;
-                    jcAudios.add(JcAudio.createFromURL(uploadSong.getSongtitle(),uploadSong.getSongLink()));
-
-
-                }
-                adapter.setSelectPosition(0);
-                recyclerView.setAdapter(adapter);
-                adapter.notifyDataSetChanged();
-                progressBar.setVisibility(View.GONE);
-                if(checkin){
-                    jcPlayerView.initPlaylist(jcAudios,null);
+            public void onClick(View v) {
+                if (!timkiem.getText().toString().equals("")) {
+                    Query query = FirebaseDatabase.getInstance().getReference("songs").orderByChild("songtitle")
+                            .startAt(timkiem.getText().toString())
+                            .endAt(timkiem.getText().toString()+"\uf8ff");
+                    query.addListenerForSingleValueEvent(valueEventListener);
 
                 }else{
-                    Toast.makeText(getContext(),"there is songs!",Toast.LENGTH_LONG).show();
+                    databaseReference.addListenerForSingleValueEvent(valueEventListener);
                 }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                progressBar.setVisibility(View.GONE);
             }
         });
         return view;
 
     }
+    ValueEventListener valueEventListener=new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            mupload.clear();
+            for(DataSnapshot dss:dataSnapshot.getChildren()){
+                Song uploadSong=dss.getValue(Song.class);
+                uploadSong.setmKey(dss.getKey());
+                currentIndex=0;
+
+
+                mupload.add(uploadSong);
+                checkin=true;
+                jcAudios.add(JcAudio.createFromURL(uploadSong.getSongtitle(),uploadSong.getSongLink()));
+
+
+            }
+            adapter.setSelectPosition(0);
+            recyclerView.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
+            progressBar.setVisibility(View.GONE);
+            if(checkin){
+                jcPlayerView.initPlaylist(jcAudios,null);
+
+            }else{
+                Toast.makeText(getContext(),"there is songs!",Toast.LENGTH_LONG).show();
+            }
+        }
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError databaseError) {
+            progressBar.setVisibility(View.GONE);
+        }
+    };
     public void changeSelectedSong(int index){
         adapter.notifyItemChanged(adapter.getSelectPosition());
         currentIndex=index;

@@ -73,28 +73,29 @@ public class CategoryFragment extends Fragment {
         progressDialog.setMessage("please wait.....");
         progressDialog.show();
         mDatabase= FirebaseDatabase.getInstance().getReference(Constants.DATABASE_PATH_UPLOADIMAGECATEGORY);
-        mDatabase.addValueEventListener(new ValueEventListener() {
-                                            @Override
-                                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                                progressDialog.dismiss();
-                                                for (DataSnapshot postsnapshot:dataSnapshot.getChildren()){
-                                                    CategoryImage categoryImage =postsnapshot.getValue(CategoryImage.class);
-                                                    categoryImages.add(categoryImage);
-                                                    categoryImages.size();
-                                                }
-                                                adapter=new CategorySongAdapter(getContext(), categoryImages,user);
-                                                recyclerView.setAdapter(adapter);
-                                                adapter.notifyDataSetChanged();
-                                            }
-
-                                            @Override
-                                            public void onCancelled(@NonNull DatabaseError databaseError) {
-                                                progressDialog.dismiss();
-                                            }
-                                        }
-        );
+        mDatabase.addListenerForSingleValueEvent(valueEventListener);
 
 
         return view;
     }
+    ValueEventListener valueEventListener=  new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            progressDialog.dismiss();
+            for (DataSnapshot postsnapshot : dataSnapshot.getChildren()) {
+                CategoryImage categoryImage = postsnapshot.getValue(CategoryImage.class);
+                categoryImages.add(categoryImage);
+                categoryImages.size();
+            }
+            adapter = new CategorySongAdapter(getContext(), categoryImages, user);
+            recyclerView.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
+        }
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError databaseError) {
+            progressDialog.dismiss();
+        }
+    }
+    ;
 }

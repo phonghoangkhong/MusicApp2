@@ -24,6 +24,7 @@
             android:textStyle="bold"
             android:textSize="24sp"
             android:gravity="center"
+            android:id="@+id/category_categorysong"
             android:layout_marginLeft="10dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
@@ -34,14 +35,14 @@
         android:layout_width="match_parent"
         android:layout_height="50dp">
         <ImageView
-            android:id="@+id/btn_search"
+            android:id="@+id/btn_search_categorysong"
             android:layout_gravity="center_vertical"
             android:src="@drawable/ic_btn_search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <EditText
             android:textColorHint="#0C0C00"
-            android:id="@+id/edt_1"
+            android:id="@+id/edt_categorysong"
             android:layout_weight="8"
             android:hint="Tìm kiếm"
             android:textColor="#000"

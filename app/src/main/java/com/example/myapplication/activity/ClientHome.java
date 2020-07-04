@@ -33,7 +33,7 @@ public class ClientHome extends AppCompatActivity {
         setupTabIcons();
     }
     private void setupTabIcons() {
-        tabLayout.getTabAt(1).setIcon(R.drawable.love);
+        tabLayout.getTabAt(1).setIcon(R.drawable.love2);
         tabLayout.getTabAt(0).setIcon(R.drawable.listenmusic);
 
     }

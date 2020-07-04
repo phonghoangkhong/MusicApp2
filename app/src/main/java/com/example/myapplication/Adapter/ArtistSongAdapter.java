@@ -19,16 +19,19 @@ import com.example.myapplication.R;
 import com.example.myapplication.activity.ArtistActivity;
 import com.example.myapplication.model.Song;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ArtistSongAdapter  extends RecyclerView.Adapter<ArtistSongAdapter.MyViewHolder> {
     private Context mContext;
     private List<Song> artistImages;
     String user;
+    ArrayList<String> listArtist;
     public ArtistSongAdapter(Context mContext, List<Song> artistImages, String user) {
         this.mContext = mContext;
        this.artistImages=artistImages;
         this.user=user;
+
     }
 
     @NonNull
@@ -46,23 +49,22 @@ public class ArtistSongAdapter  extends RecyclerView.Adapter<ArtistSongAdapter.M
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         final Song artistImage = artistImages.get(position);
-        String t= artistImage.getArtist();
+             holder.tv_book_title.setText(artistImage.getArtist());
+             byte[] image = Base64.decode(artistImage.getArtistImage(), Base64.DEFAULT);
+             Bitmap bitmap = BitmapFactory.decodeByteArray(image, 0, image.length);
+             holder.img_book_thumail.setImageBitmap(bitmap);
+             holder.cardView.setOnClickListener(new View.OnClickListener() {
+                 @Override
+                 public void onClick(View v) {
+                     Intent intent = new Intent(mContext, ArtistActivity.class);
+                     intent.putExtra("user2", user);
+                     intent.putExtra("ArtistSong", artistImage.getArtist());
+                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                     mContext.startActivity(intent);
+                 }
+             });
+         }
 
-        holder.tv_book_title.setText(artistImage.getArtist());
-        byte[] image= Base64.decode(artistImage.getArtistImage(),Base64.DEFAULT);
-        Bitmap bitmap= BitmapFactory.decodeByteArray(image,0,image.length);
-        holder.img_book_thumail.setImageBitmap(bitmap);
-        holder.cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(mContext, ArtistActivity.class);
-                intent.putExtra("user2",user);
-                intent.putExtra("ArtistSong", artistImage.getArtist());
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                mContext.startActivity(intent);
-            }
-        });
-    }
     @Override
     public int getItemCount() {
         return artistImages.size();

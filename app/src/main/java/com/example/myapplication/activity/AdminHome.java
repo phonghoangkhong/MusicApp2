@@ -32,6 +32,7 @@ import com.example.myapplication.model.Song;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -58,6 +59,7 @@ public class AdminHome extends AppCompatActivity implements AdapterView.OnItemSe
     String artistImage;
     SharedPreferences sharedPreferences;
     ImageView img_logout;
+    FirebaseFirestore firebaseFirestore;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,6 +76,7 @@ public class AdminHome extends AppCompatActivity implements AdapterView.OnItemSe
         metadataRetriever=new MediaMetadataRetriever();
         referenceSongs=FirebaseDatabase.getInstance().getReference().child("songs");
          mStorageref=FirebaseStorage.getInstance().getReference().child("songs");
+         firebaseFirestore=FirebaseFirestore.getInstance();
         Spinner spinner=findViewById(R.id.spinner);
         spinner.setOnItemSelectedListener(this);
         List<String> categories=new ArrayList<>();

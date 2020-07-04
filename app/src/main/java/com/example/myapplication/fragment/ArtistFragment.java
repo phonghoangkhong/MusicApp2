@@ -72,13 +72,17 @@ public class ArtistFragment extends Fragment {
                                             @Override
                                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                                 progressDialog.dismiss();
-                                                for (DataSnapshot postsnapshot:dataSnapshot.getChildren()){
-
-                                                   Song artistImage =postsnapshot.getValue(Song.class);
-                                                    songs.add(artistImage);
-                                                    songs.size();
+                                                List<String> listArtist = new ArrayList<>();
+                                                for (DataSnapshot postsnapshot : dataSnapshot.getChildren()) {
+                                                    Song song = postsnapshot.getValue(Song.class);
+                                                    if (!listArtist.contains(song.getArtist())){
+                                                        listArtist.add(song.getArtist());
+                                                        songs.add(song);
+                                                         songs.size();
                                                 }
-                                                adapter=new ArtistSongAdapter(getContext(), songs,user);
+                                            }
+
+                                                adapter = new ArtistSongAdapter(getContext(), songs, user);
                                                 recyclerView.setAdapter(adapter);
                                                 adapter.notifyDataSetChanged();
                                             }

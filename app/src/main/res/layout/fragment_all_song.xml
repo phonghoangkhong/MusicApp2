@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"/>
         <EditText
             android:textColorHint="#0C0C00"
-            android:id="@+id/edt_1"
+            android:id="@+id/edt_allsong"
             android:layout_weight="8"
             android:hint="Tìm kiếm"
             android:textColor="#000"

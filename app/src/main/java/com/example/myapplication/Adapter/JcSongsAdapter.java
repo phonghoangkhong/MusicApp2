@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.DAO.LoveSongDAO;
 import com.example.myapplication.R;
+import com.example.myapplication.model.Constants;
 import com.example.myapplication.model.Song;
 import com.example.myapplication.model.Utility;
 import com.google.firebase.database.DatabaseReference;
@@ -121,13 +122,13 @@ public class JcSongsAdapter extends RecyclerView.Adapter<JcSongsAdapter.SongsAda
         }
         public void setLove(Song uploadSong){
 
-             databaseReference= FirebaseDatabase.getInstance().getReference(user);
+             databaseReference= FirebaseDatabase.getInstance().getReference(Constants.DATABASE_PATH_ARTIST).child(user);
             String key=uploadSong.getmKey();
             databaseReference.child(key).setValue(uploadSong);
         }
         public void removeLove(Song uploadSong){
 
-            databaseReference= FirebaseDatabase.getInstance().getReference(user);
+            databaseReference= FirebaseDatabase.getInstance().getReference(Constants.DATABASE_PATH_ARTIST).child(user);
             String key=uploadSong.getmKey();
             databaseReference.child(key).removeValue();
         }

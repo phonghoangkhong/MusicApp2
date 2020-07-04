@@ -3,6 +3,7 @@ package com.example.myapplication.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -21,6 +22,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -33,12 +35,13 @@ public class ArtistActivity extends AppCompatActivity {
     List<Song> mupload;
     JcSongsAdapter adapter;
     DatabaseReference databaseReference;
-    ValueEventListener valueEventListener;
+
     JcPlayerView jcPlayerView;
     ArrayList<JcAudio> jcAudios=new ArrayList<>();
     ImageView btn_back;
     private int currentIndex;
-
+     ImageView search;
+     EditText timkiem;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +59,8 @@ public class ArtistActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        search=findViewById(R.id.btn_search_artistsong);
+        timkiem=findViewById(R.id.edt_artistsong);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         mupload=new ArrayList<>();
@@ -71,37 +76,19 @@ public class ArtistActivity extends AppCompatActivity {
 
         });
         databaseReference= FirebaseDatabase.getInstance().getReference("songs");
-        valueEventListener=databaseReference.addValueEventListener(new ValueEventListener() {
+        databaseReference.addValueEventListener(valueEventListener);
+        search.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                mupload.clear();
-                for(DataSnapshot dss:dataSnapshot.getChildren()){
-                    Song uploadSong=dss.getValue(Song.class);
-                    uploadSong.setmKey(dss.getKey());
-                    currentIndex=0;
-                    final String s=getIntent().getExtras().getString("ArtistSong");
-                    if(s.equals(uploadSong.getArtist())){
-                        mupload.add(uploadSong);
-                        checkin=true;
-                        jcAudios.add(JcAudio.createFromURL(uploadSong.getSongtitle(),uploadSong.getSongLink()));
-
-                    }
-                }
-                adapter.setSelectPosition(0);
-                recyclerView.setAdapter(adapter);
-                adapter.notifyDataSetChanged();
-                progressBar.setVisibility(View.GONE);
-                if(checkin){
-                    jcPlayerView.initPlaylist(jcAudios,null);
+            public void onClick(View v) {
+                if (!timkiem.getText().toString().equals("")) {
+                    Query query = FirebaseDatabase.getInstance().getReference("songs").orderByChild("songtitle")
+                            .startAt(timkiem.getText().toString())
+                            .endAt(timkiem.getText().toString()+"\uf8ff");
+                    query.addListenerForSingleValueEvent(valueEventListener);
 
                 }else{
-                    Toast.makeText(ArtistActivity.this,"there is songs!",Toast.LENGTH_LONG).show();
+                    databaseReference.addListenerForSingleValueEvent(valueEventListener);
                 }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                progressBar.setVisibility(View.GONE);
             }
         });
     }
@@ -111,4 +98,37 @@ public class ArtistActivity extends AppCompatActivity {
         adapter.setSelectPosition(currentIndex);
         adapter.notifyItemChanged(currentIndex);
     }
+    ValueEventListener valueEventListener=new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            mupload.clear();
+            for(DataSnapshot dss:dataSnapshot.getChildren()){
+                Song uploadSong=dss.getValue(Song.class);
+                uploadSong.setmKey(dss.getKey());
+                currentIndex=0;
+                final String s=getIntent().getExtras().getString("ArtistSong");
+                if(s.equals(uploadSong.getArtist())){
+                    mupload.add(uploadSong);
+                    checkin=true;
+                    jcAudios.add(JcAudio.createFromURL(uploadSong.getSongtitle(),uploadSong.getSongLink()));
+
+                }
+            }
+            adapter.setSelectPosition(0);
+            recyclerView.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
+            progressBar.setVisibility(View.GONE);
+            if(checkin){
+                jcPlayerView.initPlaylist(jcAudios,null);
+
+            }else{
+                Toast.makeText(ArtistActivity.this,"there is songs!",Toast.LENGTH_LONG).show();
+            }
+        }
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError databaseError) {
+            progressBar.setVisibility(View.GONE);
+        }
+    };
 }

@@ -29,7 +29,7 @@
             android:layout_height="match_parent"
             android:textColor="#2d2d2d"
             android:textSize="13sp"
-            android:text="Phong ok"
+            android:text=""
             android:id="@+id/book_title"
             android:gravity="center"></TextView>
     </LinearLayout>
