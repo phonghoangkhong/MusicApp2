@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".fragment.LoveSongFragment">
+    <LinearLayout
+        android:layout_weight="1"
+        android:layout_margin="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+        <TextView
+            android:text="Bài hát yêu thích"
+            android:textAllCaps="true"
+            android:textColor="#E91E63"
+            android:textStyle="bold"
+            android:textSize="24sp"
+            android:gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_margin="32dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <ImageView
+            android:id="@+id/btn_search_allsong"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_btn_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <EditText
+            android:textColorHint="#0C0C00"
+            android:id="@+id/edt_1"
+            android:layout_weight="8"
+            android:hint="Tìm kiếm"
+            android:textColor="#000"
+            android:paddingLeft="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_width="50dp"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_weight="10"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/recycleview_id_lovesong"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            ></androidx.recyclerview.widget.RecyclerView>
+        <androidx.core.widget.ContentLoadingProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:id="@+id/processbarshowsong_lovesong"
+            android:indeterminate="true"
+            ></androidx.core.widget.ContentLoadingProgressBar>
+        <com.example.jean.jcplayer.view.JcPlayerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/jcplayer_lovesong"
+            android:layout_alignParentBottom="true"
+            android:visibility="gone">
+
+        </com.example.jean.jcplayer.view.JcPlayerView>
+    </LinearLayout>
+
+
+
+</LinearLayout>
