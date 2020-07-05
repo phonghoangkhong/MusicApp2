@@ -4,6 +4,6 @@ public class Constants {
     public static final String STORANGE_PATH_UPLOADIMAGECATEGORY="category/";
     public static final String DATABASE_PATH_UPLOADIMAGECATEGORY="category/";
 
-    public static final String DATABASE_PATH_ARTIST="artist/";
+    public static final String DATABASE_PATH_ARTIST="user/";
 }
 
