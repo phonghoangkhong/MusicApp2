@@ -17,17 +17,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
 import com.example.myapplication.activity.ArtistActivity;
-import com.example.myapplication.model.Song;
+import com.example.myapplication.model.Artist;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class ArtistSongAdapter  extends RecyclerView.Adapter<ArtistSongAdapter.MyViewHolder> {
+public class ArtistSongAdapter extends RecyclerView.Adapter<ArtistSongAdapter.MyViewHolder> {
     private Context mContext;
-    private List<Song> artistImages;
+    private List<Artist> artistImages;
     String user;
-    ArrayList<String> listArtist;
-    public ArtistSongAdapter(Context mContext, List<Song> artistImages, String user) {
+    public ArtistSongAdapter(Context mContext, List<Artist> artistImages, String user) {
         this.mContext = mContext;
        this.artistImages=artistImages;
         this.user=user;
@@ -48,9 +46,9 @@ public class ArtistSongAdapter  extends RecyclerView.Adapter<ArtistSongAdapter.M
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        final Song artistImage = artistImages.get(position);
-             holder.tv_book_title.setText(artistImage.getArtist());
-             byte[] image = Base64.decode(artistImage.getArtistImage(), Base64.DEFAULT);
+        final Artist artistImage = artistImages.get(position);
+             holder.tv_book_title.setText(artistImage.getName());
+             byte[] image = Base64.decode(artistImage.getImage(), Base64.DEFAULT);
              Bitmap bitmap = BitmapFactory.decodeByteArray(image, 0, image.length);
              holder.img_book_thumail.setImageBitmap(bitmap);
              holder.cardView.setOnClickListener(new View.OnClickListener() {
@@ -58,7 +56,7 @@ public class ArtistSongAdapter  extends RecyclerView.Adapter<ArtistSongAdapter.M
                  public void onClick(View v) {
                      Intent intent = new Intent(mContext, ArtistActivity.class);
                      intent.putExtra("user2", user);
-                     intent.putExtra("ArtistSong", artistImage.getArtist());
+                     intent.putExtra("ArtistSong", artistImage.getName());
                      intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                      mContext.startActivity(intent);
                  }

@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -37,6 +38,7 @@ public class CategoryFragment extends Fragment {
     ProgressDialog progressDialog;
     private List<CategoryImage> categoryImages;
     ImageView imageView;
+
      String user;
     public CategoryFragment(String user) {
         // Required empty public constructor
@@ -52,6 +54,8 @@ public class CategoryFragment extends Fragment {
        view=inflater.inflate(R.layout.fragment_category, container, false);
         recyclerView=view.findViewById(R.id.recycleview_id3);
         imageView = view.findViewById(R.id.btn_back);
+
+
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

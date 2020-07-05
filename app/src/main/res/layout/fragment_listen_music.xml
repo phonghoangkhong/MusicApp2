@@ -18,16 +18,16 @@
         android:layout_height="match_parent">
       <LinearLayout
           android:orientation="horizontal"
+          android:background="#ffffff"
           android:layout_width="match_parent"
           android:layout_height="60dp">
         <TextView
             android:layout_weight="7"
-            android:background="#ffffff"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:text="Nhom8 MP3"
+            android:gravity="center"
             android:textStyle="bold"
-            android:textAlignment="center"
             android:textSize="40sp"
             android:fontFamily="serif-monospace"/>
         <ImageView
@@ -35,34 +35,35 @@
             android:id="@+id/btn_logout"
             android:src="@drawable/logput"
             android:fontFamily="serif-monospace"
-            android:background="#FFFFFF"
             android:layout_marginRight="16dp"
             android:layout_width="50dp"
-            android:layout_height="50dp"/>
+            android:layout_height="56dp"/>
       </LinearLayout>
-     
+
       <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="match_parent"
-          android:orientation ="vertical"
-          android:paddingTop="12dp">
+          android:layout_marginTop="20dp"
+          android:orientation="vertical">
+
         <TextView
-            android:textColor="#000"
             android:id="@+id/txtView1"
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_marginTop="40dp"
-            android:paddingLeft="24dp"
             android:fontFamily="monospace"
-            android:textSize="17sp"
+            android:paddingLeft="24dp"
             android:text="thư viện nhạc"
             android:textAllCaps="true"
+            android:textColor="#000"
+            android:textSize="17sp"
             android:textStyle="bold" />
+
         <ListView
-            android:dividerHeight="1px"
             android:id="@+id/list"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:dividerHeight="1px" />
       </LinearLayout>
     </RelativeLayout>
   </FrameLayout>

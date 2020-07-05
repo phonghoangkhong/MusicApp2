@@ -36,7 +36,7 @@ public class Login extends AppCompatActivity {
     private  final int REGISTER=100;
      SharedPreferences sharedPreferences;
      String trangThai;
-    private SignInButton signInButton;
+    private Button signInButton;
     private GoogleSignInClient mGoogleSignInClient;
     private String TAG = "MainActivity";
     private int RC_SIGN_IN = 1;

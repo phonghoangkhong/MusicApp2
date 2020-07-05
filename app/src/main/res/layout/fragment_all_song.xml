@@ -72,6 +72,9 @@
             android:id="@+id/processbarshowsong_allsong"
             android:indeterminate="true"
             ></androidx.core.widget.ContentLoadingProgressBar>
+
+    </LinearLayout>
+
         <com.example.jean.jcplayer.view.JcPlayerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -80,7 +83,7 @@
             android:visibility="gone">
 
         </com.example.jean.jcplayer.view.JcPlayerView>
-    </LinearLayout>
+
 
 
 

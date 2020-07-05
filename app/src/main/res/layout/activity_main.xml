@@ -9,20 +9,24 @@
     android:orientation="vertical"
 
     tools:context=".activity.AdminHome">
+
     <LinearLayout
         android:orientation="horizontal"
+        android:background="#ffffff"
         android:layout_width="match_parent"
         android:layout_height="60dp">
+
         <TextView
             android:layout_weight="7"
-            android:background="#ffffff"
+android:gravity="center_vertical"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:text="ADMIN HOME"
             android:textStyle="bold"
             android:textAlignment="center"
             android:textSize="40sp"
-            android:fontFamily="serif-monospace"/>
+            android:fontFamily="serif-monospace" />
+
         <ImageView
             android:layout_weight="3"
             android:id="@+id/btn_logout_admin"
@@ -31,8 +35,9 @@
             android:background="#FFFFFF"
             android:layout_marginRight="16dp"
             android:layout_width="50dp"
-            android:layout_height="50dp"/>
+            android:layout_height="56dp" />
     </LinearLayout>
+
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -41,14 +46,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#ffffff"
-        >
+        android:background="#ffffff">
 
         <Button
             android:id="@+id/openAudioFiles"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
+            android:background="#00BCD4"
             android:text="Choose"
             android:onClick="openAudioFiles"
             android:textSize="16sp"></Button>
@@ -62,86 +66,102 @@
             android:text="No file Selected"></TextView>
 
 
-<!--        <Button-->
-<!--            android:id="@+id/buttonUpload"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            android:text="categoryImage"-->
-<!--            android:textStyle="bold"></Button>-->
+        <!--        <Button-->
+        <!--            android:id="@+id/buttonUpload"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginTop="10dp"-->
+        <!--            android:text="categoryImage"-->
+        <!--            android:textStyle="bold"></Button>-->
 
-   </LinearLayout>
+    </LinearLayout>
+
     <ProgressBar
         android:id="@+id/processbar"
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"></ProgressBar>
-            <Button
-                android:id="@+id/buttonUpload"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:onClick="uploadFileTofirebase"
-                android:text="UpLoad Music"
-                android:textStyle="bold"></Button>
+
+    <Button
+        android:id="@+id/buttonUpload"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:onClick="uploadFileTofirebase"
+        android:text="UpLoad Music"
+        android:background="#00BCD4"
+        android:textStyle="bold"></Button>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-       android:orientation="vertical">
+        android:orientation="vertical">
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="title"
+            android:text="Title"
+            android:textColor="#870C35"
             android:id="@+id/title"
             android:textStyle="bold">
 
         </TextView>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="album"
+            android:text="Album"
+            android:textColor="#870C35"
             android:id="@+id/album"
-            android:textStyle="bold"
-            >
+            android:textStyle="bold">
 
         </TextView>
-         <TextView
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:text="artist"
-             android:id="@+id/artist"
-             android:textStyle="bold"></TextView>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="dataa"
+            android:text="Artist"
+            android:textColor="#870C35"
+            android:id="@+id/artist"
+            android:textStyle="bold"></TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Dataa"
+            android:textColor="#870C35"
             android:id="@+id/dataa"
             android:textStyle="bold"></TextView>
-           <TextView
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:text="duration"
-               android:id="@+id/duration"
-               android:textStyle="bold"></TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Duration"
+            android:textColor="#870C35"
+            android:id="@+id/duration"
+            android:textStyle="bold"></TextView>
+
         <ImageView
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:id="@+id/imageView_main"></ImageView>
     </LinearLayout>
-           <Button
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:id="@+id/openimageuploadActivity"
-               android:onClick="uploadImageAlbum"
-               android:text="Upload Image Album"
-               ></Button>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/openimageuploadActivity"
+        android:onClick="uploadImageAlbum"
+        android:layout_marginBottom="10dp"
+        android:background="#00BCD4"
+        android:text="Upload Image Album"></Button>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/listenmusic"
-        android:text="Listen Music"
-        ></Button>
+        android:background="#00BCD4"
+        android:text="Listen Music"></Button>
 
 </LinearLayout>

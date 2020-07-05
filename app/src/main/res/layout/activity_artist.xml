@@ -23,6 +23,7 @@
             android:textColor="#E91E63"
             android:textStyle="bold"
             android:textSize="24sp"
+            android:id="@+id/artist_text"
             android:gravity="center"
             android:layout_marginLeft="10dp"
             android:layout_width="match_parent"
@@ -72,16 +73,16 @@
             android:id="@+id/processbarshowsong_artistsong"
             android:indeterminate="true"
             ></androidx.core.widget.ContentLoadingProgressBar>
-        <com.example.jean.jcplayer.view.JcPlayerView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/jcplayer_artistsong"
-            android:layout_alignParentBottom="true"
-            android:visibility="gone">
 
-        </com.example.jean.jcplayer.view.JcPlayerView>
     </LinearLayout>
 
+    <com.example.jean.jcplayer.view.JcPlayerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/jcplayer_artistsong"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone">
 
+    </com.example.jean.jcplayer.view.JcPlayerView>
 
 </LinearLayout>

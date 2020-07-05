@@ -19,6 +19,7 @@ import com.example.jean.jcplayer.view.JcPlayerView;
 import com.example.myapplication.Adapter.JcSongsAdapter;
 import com.example.myapplication.R;
 import com.example.myapplication.model.Constants;
+import com.example.myapplication.model.LoveSongUser;
 import com.example.myapplication.model.Song;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -69,7 +70,8 @@ public class LoveSongFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mupload=new ArrayList<>();
         recyclerView.setAdapter(adapter);
-        adapter=new JcSongsAdapter(getContext(), mupload,user, new JcSongsAdapter.RecyclerItemClickListener() {
+        LoveSongUser love=new LoveSongUser(user,mupload);
+        adapter=new JcSongsAdapter(getContext(),love.getListSong(),love.getUserName(), new JcSongsAdapter.RecyclerItemClickListener() {
             @Override
             public void onClickListener(Song uploadSong, int position) {
                 changeSelectedSong(position);

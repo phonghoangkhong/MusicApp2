@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -41,6 +42,7 @@ public class CategoryActivity extends AppCompatActivity {
     String category;
     private int currentIndex;
     Query query;
+    TextView textcategory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +55,8 @@ public class CategoryActivity extends AppCompatActivity {
         btn_back = findViewById(R.id.btn_back2);
         search=findViewById(R.id.btn_search_categorysong);
         timkiem=findViewById(R.id.edt_categorysong);
+        textcategory=findViewById(R.id.category_categorysong);
+        textcategory.setText( getIntent().getExtras().getString("SongsCategory"));
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

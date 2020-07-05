@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.Adapter.ArtistSongAdapter;
 import com.example.myapplication.R;
+import com.example.myapplication.model.Artist;
 import com.example.myapplication.model.Song;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -33,7 +34,7 @@ public class ArtistFragment extends Fragment {
     ArtistSongAdapter adapter;
     DatabaseReference mDatabase;
     ProgressDialog progressDialog;
-    private List<Song> songs;
+    private List<Artist> songs;
     ImageView imageView;
     String user;
     public ArtistFragment(String user) {
@@ -77,7 +78,8 @@ public class ArtistFragment extends Fragment {
                                                     Song song = postsnapshot.getValue(Song.class);
                                                     if (!listArtist.contains(song.getArtist())){
                                                         listArtist.add(song.getArtist());
-                                                        songs.add(song);
+                                                        Artist artist=new Artist(song.getArtist(),song.getArtistImage());
+                                                         songs.add(artist);
                                                          songs.size();
                                                 }
                                             }

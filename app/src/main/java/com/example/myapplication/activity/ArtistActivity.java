@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -42,7 +43,8 @@ public class ArtistActivity extends AppCompatActivity {
     private int currentIndex;
      ImageView search;
      EditText timkiem;
-    @Override
+    TextView artisttext;
+     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_artist);
@@ -50,6 +52,8 @@ public class ArtistActivity extends AppCompatActivity {
         progressBar=findViewById(R.id.processbarshowsong_artistsong);
         String user=getIntent().getStringExtra("user2");
         jcPlayerView=findViewById(R.id.jcplayer_artistsong);
+        artisttext=findViewById(R.id.artist_text);
+        artisttext.setText(getIntent().getExtras().getString("ArtistSong"));
         btn_back = findViewById(R.id.btn_back_artistsong);
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override

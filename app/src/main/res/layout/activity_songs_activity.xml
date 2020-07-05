@@ -73,16 +73,16 @@
             android:id="@+id/processbarshowsong"
             android:indeterminate="true"
             ></androidx.core.widget.ContentLoadingProgressBar>
-        <com.example.jean.jcplayer.view.JcPlayerView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/jcplayer"
-            android:layout_alignParentBottom="true"
-            android:visibility="gone">
 
-        </com.example.jean.jcplayer.view.JcPlayerView>
     </LinearLayout>
+    <com.example.jean.jcplayer.view.JcPlayerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/jcplayer"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone">
 
+    </com.example.jean.jcplayer.view.JcPlayerView>
 
 
 </LinearLayout>

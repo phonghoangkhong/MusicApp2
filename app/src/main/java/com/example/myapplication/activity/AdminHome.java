@@ -98,8 +98,8 @@ public class AdminHome extends AppCompatActivity implements AdapterView.OnItemSe
 
             }
         });
-        ArrayAdapter<String> dataAdapter=new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,categories);
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<String> dataAdapter=new ArrayAdapter<>(this,R.layout.spinner_style,categories);
+        dataAdapter.setDropDownViewResource(R.layout.spinner_style);
         spinner.setAdapter(dataAdapter);
          listenmusic.setOnClickListener(new View.OnClickListener() {
              @Override
