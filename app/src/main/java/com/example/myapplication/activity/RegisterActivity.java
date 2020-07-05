@@ -16,7 +16,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class Register extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     EditText user,matKhau;
     Button btnDK;
@@ -47,7 +47,7 @@ public class Register extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                        if(task.isSuccessful()){
 
-                           Toast.makeText(Register.this,"Đăng ký thành công",Toast.LENGTH_LONG).show();
+                           Toast.makeText(RegisterActivity.this,"Đăng ký thành công",Toast.LENGTH_LONG).show();
                            Intent intent=new Intent();
                            intent.putExtra("email",email);
                            intent.putExtra("password",password);
@@ -56,7 +56,7 @@ public class Register extends AppCompatActivity {
                        }else{
 //                           Exception e=task.getException();
 //                           e.printStackTrace();
-                           Toast.makeText(Register.this,"Nhập đúng định dạng email, mật khẩu có ít nhất 6 ký tự",Toast.LENGTH_LONG).show();
+                           Toast.makeText(RegisterActivity.this,"Nhập đúng định dạng email, mật khẩu có ít nhất 6 ký tự",Toast.LENGTH_LONG).show();
                        }
 
                         // ...

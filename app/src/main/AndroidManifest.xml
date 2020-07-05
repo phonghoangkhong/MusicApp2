@@ -14,11 +14,11 @@
 
         <activity android:name=".activity.ArtistActivity" />
         <activity android:name=".activity.CategoryActivity" />
-        <activity android:name=".activity.ClientHome" />
-        <activity android:name=".activity.AdminHome" />
-        <activity android:name=".activity.Register" />
+        <activity android:name=".activity.ClientHomeActivity" />
+        <activity android:name=".activity.AdminHomeActivity" />
+        <activity android:name=".activity.RegisterActivity" />
         <activity android:name=".activity.UploadAlbumActivity" />
-        <activity android:name=".activity.Login">
+        <activity android:name=".activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

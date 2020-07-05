@@ -17,7 +17,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -27,7 +26,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
-public class Login extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
     EditText edt_email, edt_pass;
     Button btn_login;
     Button btn_register;
@@ -57,12 +56,12 @@ public class Login extends AppCompatActivity {
             if(trangThai.equals("admin")) {
                 Intent intent = new Intent();
                 intent.putExtra("user2",trangThai);
-                intent.setClass(Login.this, AdminHome.class);
+                intent.setClass(LoginActivity.this, AdminHomeActivity.class);
                 startActivity(intent);
             }else{
                 Intent intent = new Intent();
                 intent.putExtra("user",trangThai);
-                intent.setClass(Login.this, ClientHome.class);
+                intent.setClass(LoginActivity.this, ClientHomeActivity.class);
                 startActivity(intent);
             }
 
@@ -77,7 +76,7 @@ public class Login extends AppCompatActivity {
         btn_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Login.this, Register.class);
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivityForResult(intent,REGISTER);
             }
         });
@@ -113,7 +112,7 @@ public class Login extends AppCompatActivity {
 
                                 Intent intent = new Intent();
                                 intent.putExtra("user2","admin");
-                                intent.setClass(Login.this, AdminHome.class);
+                                intent.setClass(LoginActivity.this, AdminHomeActivity.class);
                                 startActivity(intent);
                                 SharedPreferences.Editor editor=sharedPreferences.edit();
                                 editor.putString("trang thai","admin");
@@ -124,7 +123,7 @@ public class Login extends AppCompatActivity {
                                 Intent intent = new Intent();
                                 intent.putExtra("user",user[0]);
 
-                                intent.setClass(Login.this, ClientHome.class);
+                                intent.setClass(LoginActivity.this, ClientHomeActivity.class);
                                 startActivity(intent);
                                 SharedPreferences.Editor editor=sharedPreferences.edit();
                                 editor.putString("trang thai",user[0]);
@@ -133,7 +132,7 @@ public class Login extends AppCompatActivity {
                             }
                         } else {
 
-                            Toast.makeText(Login.this, "Đăng nhập thất bại", Toast.LENGTH_LONG).show();
+                            Toast.makeText(LoginActivity.this, "Đăng nhập thất bại", Toast.LENGTH_LONG).show();
 
 
                         }
@@ -170,10 +169,10 @@ public class Login extends AppCompatActivity {
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
             GoogleSignInAccount acc = completedTask.getResult(ApiException.class);
-            Toast.makeText(Login.this, "Signed In Successfully", Toast.LENGTH_SHORT).show();
+            Toast.makeText(LoginActivity.this, "Signed In Successfully", Toast.LENGTH_SHORT).show();
             FirebaseGoogleAuth(acc);
         } catch (ApiException e) {
-            Toast.makeText(Login.this, "Sign In Failed", Toast.LENGTH_SHORT).show();
+            Toast.makeText(LoginActivity.this, "Sign In Failed", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -183,19 +182,22 @@ public class Login extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()) {
-                    Toast.makeText(Login.this, "Successfully", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Successfully", Toast.LENGTH_SHORT).show();
                     FirebaseUser user = mAuth.getCurrentUser();
 //                    updateUI(user);
                     String personEmail = acc.getEmail();
 
-                    Intent intent=new Intent(Login.this,ClientHome.class);
+                    Intent intent=new Intent(LoginActivity.this, ClientHomeActivity.class);
                     String []userName=personEmail.split("@");
                     intent.putExtra("user", userName[0]);
 //                    intent.putExtra(mGoogleSignInClient, obj);
                     startActivity(intent);
+                    SharedPreferences.Editor editor=sharedPreferences.edit();
+                    editor.putString("trang thai",userName[0]);
+                    editor.commit();
 
                 } else {
-                    Toast.makeText(Login.this, "Failed", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Failed", Toast.LENGTH_SHORT).show();
 //                    updateUI(null);
                 }
             }

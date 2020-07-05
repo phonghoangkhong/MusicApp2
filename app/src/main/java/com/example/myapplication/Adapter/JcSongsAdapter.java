@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.DAO.LoveSongDAO;
 import com.example.myapplication.R;
+import com.example.myapplication.fragment.LoveSongFragment;
 import com.example.myapplication.model.Constants;
 import com.example.myapplication.model.Song;
 import com.example.myapplication.model.Utility;
@@ -110,6 +111,7 @@ public class JcSongsAdapter extends RecyclerView.Adapter<JcSongsAdapter.SongsAda
                     if(uploadSong.getState()==0) {
                         loveSong.setImageResource(R.drawable.love);
                            removeLove(uploadSong);
+
                     }else {
                         loveSong.setImageResource(R.drawable.love2);
                            setLove(uploadSong);

@@ -42,7 +42,7 @@ import com.google.firebase.storage.UploadTask;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdminHome extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class AdminHomeActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     TextView textViewImage;
     ProgressBar progressBar;
     Uri androidUri;
@@ -93,7 +93,7 @@ public class AdminHome extends AppCompatActivity implements AdapterView.OnItemSe
                 SharedPreferences.Editor editor=sharedPreferences.edit();
                 editor.remove("trang thai");
                 editor.commit();
-                Intent intent = new Intent(AdminHome.this, Login.class);
+                Intent intent = new Intent(AdminHomeActivity.this, LoginActivity.class);
                 startActivity(intent);
 
             }
@@ -107,7 +107,7 @@ public class AdminHome extends AppCompatActivity implements AdapterView.OnItemSe
                  Intent intent=new Intent();
 
                  intent.putExtra("user","admin");
-                 intent.setClass(AdminHome.this, ClientHome.class);
+                 intent.setClass(AdminHomeActivity.this, ClientHomeActivity.class);
                  startActivity(intent);
              }
          });
@@ -239,7 +239,7 @@ public class AdminHome extends AppCompatActivity implements AdapterView.OnItemSe
         return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(androidUri));
     }
     public void uploadImageAlbum(View v){
-          Intent in=new Intent(AdminHome.this, UploadAlbumActivity.class);
+          Intent in=new Intent(AdminHomeActivity.this, UploadAlbumActivity.class);
           startActivity(in);
     }
 

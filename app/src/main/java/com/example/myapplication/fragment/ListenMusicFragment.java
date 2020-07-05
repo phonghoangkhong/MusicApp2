@@ -17,7 +17,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.myapplication.Adapter.ListenSongAdapter;
 import com.example.myapplication.R;
-import com.example.myapplication.activity.Login;
+import com.example.myapplication.activity.LoginActivity;
 
 
 public class ListenMusicFragment extends Fragment {
@@ -57,7 +57,7 @@ SharedPreferences sharedPreferences;
                 SharedPreferences.Editor editor=sharedPreferences.edit();
                 editor.remove("trang thai");
                 editor.commit();
-                Intent intent = new Intent(getContext(), Login.class);
+                Intent intent = new Intent(getContext(), LoginActivity.class);
                 startActivity(intent);
 
             }

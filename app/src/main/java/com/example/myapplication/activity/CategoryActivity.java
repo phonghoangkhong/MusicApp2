@@ -60,7 +60,7 @@ public class CategoryActivity extends AppCompatActivity {
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CategoryActivity.this, ClientHome.class);
+                Intent intent = new Intent(CategoryActivity.this, ClientHomeActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
             }

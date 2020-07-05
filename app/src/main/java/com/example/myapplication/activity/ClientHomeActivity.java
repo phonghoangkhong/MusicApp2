@@ -11,7 +11,7 @@ import com.example.myapplication.fragment.ListenMusicFragment;
 import com.example.myapplication.fragment.LoveSongFragment;
 import com.google.android.material.tabs.TabLayout;
 
-public class ClientHome extends AppCompatActivity {
+public class ClientHomeActivity extends AppCompatActivity {
     ViewPager viewPager;
     TabLayout tabLayout;
     public ListenMusicFragment listenMusicFragment;
