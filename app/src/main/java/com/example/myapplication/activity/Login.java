@@ -162,6 +162,7 @@ public class Login extends AppCompatActivity {
     //Google sign in
     private void signIn() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 
@@ -189,7 +190,7 @@ public class Login extends AppCompatActivity {
 
                     Intent intent=new Intent(Login.this,ClientHome.class);
                     String []userName=personEmail.split("@");
-                    intent.putExtra("user", userName);
+                    intent.putExtra("user", userName[0]);
 //                    intent.putExtra(mGoogleSignInClient, obj);
                     startActivity(intent);
 
