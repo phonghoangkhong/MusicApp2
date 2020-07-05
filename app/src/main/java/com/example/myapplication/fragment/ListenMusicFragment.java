@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -49,7 +50,7 @@ SharedPreferences sharedPreferences;
         View view = inflater.inflate(R.layout.fragment_listen_music, container, false);
         img_logout = view.findViewById(R.id.btn_logout);
         sharedPreferences=getActivity().getSharedPreferences("musicApp", Context.MODE_PRIVATE);
-
+        Toast.makeText(getContext(),"Xin Chào : "+user,Toast.LENGTH_LONG).show();
         img_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

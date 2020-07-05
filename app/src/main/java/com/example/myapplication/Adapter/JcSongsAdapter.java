@@ -122,13 +122,13 @@ public class JcSongsAdapter extends RecyclerView.Adapter<JcSongsAdapter.SongsAda
         }
         public void setLove(Song uploadSong){
 
-             databaseReference= FirebaseDatabase.getInstance().getReference(Constants.DATABASE_PATH_ARTIST).child(user);
+             databaseReference= FirebaseDatabase.getInstance().getReference(Constants.DATABASE_PATH_USER).child(user);
             String key=uploadSong.getmKey();
             databaseReference.child(key).setValue(uploadSong);
         }
         public void removeLove(Song uploadSong){
 
-            databaseReference= FirebaseDatabase.getInstance().getReference(Constants.DATABASE_PATH_ARTIST).child(user);
+            databaseReference= FirebaseDatabase.getInstance().getReference(Constants.DATABASE_PATH_USER).child(user);
             String key=uploadSong.getmKey();
             databaseReference.child(key).removeValue();
         }

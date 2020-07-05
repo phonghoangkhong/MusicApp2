@@ -17,7 +17,7 @@ public class LoveSongDAO {
     ValueEventListener valueEventListener;
     public ArrayList<String> getLove(String t){
         final ArrayList<String> list=new ArrayList<>();
-        databaseReference= FirebaseDatabase.getInstance().getReference(Constants.DATABASE_PATH_ARTIST).child(t);
+        databaseReference= FirebaseDatabase.getInstance().getReference(Constants.DATABASE_PATH_USER).child(t);
         valueEventListener=databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

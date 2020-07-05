@@ -81,13 +81,13 @@ public class LoveSongFragment extends Fragment {
         });
         search=view.findViewById(R.id.btn_search_lovesong);
         timkiem=view.findViewById(R.id.edt_lovesong);
-        databaseReference= FirebaseDatabase.getInstance().getReference(Constants.DATABASE_PATH_ARTIST).child(user);
+        databaseReference= FirebaseDatabase.getInstance().getReference(Constants.DATABASE_PATH_USER).child(user);
         databaseReference.addListenerForSingleValueEvent(valueEventListener);
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (!timkiem.getText().toString().equals("")) {
-                    Query query =FirebaseDatabase.getInstance().getReference(Constants.DATABASE_PATH_ARTIST).child(user)
+                    Query query =FirebaseDatabase.getInstance().getReference(Constants.DATABASE_PATH_USER).child(user)
                             .orderByChild("songtitle")
                             .startAt(timkiem.getText().toString())
                             .endAt(timkiem.getText().toString()+"\uf8ff");
